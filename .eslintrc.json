@@ -1,0 +1,90 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "no-unused-vars": "off",
+        "indent": "off",
+        "require-await": "off",
+        "array-bracket-spacing": ["error", "never", {
+          "arraysInArrays": false,
+          "singleValue": false
+        }],
+        "space-in-parens": ["error", "never"],
+        "space-before-blocks": "error",
+        "space-infix-ops": [2, {
+          "int32Hint": false
+        }],
+        "comma-spacing": ["error", {
+          "before": false,
+          "after": true
+        }],
+        "object-curly-spacing": ["error", "always", {
+          "objectsInObjects": false
+        }],
+        "key-spacing": ["error", {
+          "beforeColon": false,
+          "afterColon": true
+        }],
+        // "space-before-keywords": [2, "always"],
+        "react/jsx-curly-spacing": ["warn", {
+          "when": "never",
+          "children": {
+            "when": "always"
+          }
+        }],
+        "react/jsx-filename-extension": ["warn", {
+          "extensions": [".ts", ".tsx"]
+        }],
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-first-prop-new-line": "warn",
+        "react/jsx-max-props-per-line": "warn",
+        "react/prop-types": "error",
+        "react/jsx-closing-bracket-location": ["warn", "tag-aligned"],
+        "react/jsx-tag-spacing": "warn",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/type-annotation-spacing": "error",
+        "@typescript-eslint/explicit-module-boundary-types": "error",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/comma-dangle": ["warn", "always-multiline"], // apply to js and ts
+        "@typescript-eslint/explicit-function-return-type": ["error", {
+          "allowExpressions": true,
+          "allowHigherOrderFunctions": true
+        }],
+        "@typescript-eslint/keyword-spacing": ["error"],
+        // "@typescript-eslint/await-thenable": "warn",
+        // "@typescript-eslint/require-await": "warn",
+        // "@typescript-eslint/no-floating-promises": "warn",
+        "@typescript-eslint/indent": ["error", 2],
+        "@typescript-eslint/sort-type-union-intersection-members": "error",
+        "jsx-quotes": ["warn", "prefer-double"],
+        "linebreak-style": ["error", "unix"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "never"],
+        "arrow-spacing": "error",
+        "no-trailing-spaces": "error",
+        "no-whitespace-before-property": "error",
+        "brace-style": ["error", "1tbs", {
+          "allowSingleLine": true
+        }]
+    }
+}
