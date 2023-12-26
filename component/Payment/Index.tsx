@@ -37,7 +37,7 @@ const PaymentIndex = (): JSX.Element => {
         src={indexPic.src}
         className={Style['img-index']}
         onClick={() => setIsOpen(true)}
-      ></img>\
+      ></img>
       <div className={Style['_item-center']}>
         <Modal
           isOpen={isOpen}
