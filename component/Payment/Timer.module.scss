@@ -14,3 +14,38 @@
     // padding: 10px;
     border: 2px solid #002237
 }
+.code-button {
+    // Add your styles for the CODE button...
+    // For example:
+    background-color: #004474;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  /* CSS */
+.custom-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid #007bff; /* Bootstrap primary color */
+    color: #ffffff; /* Text color */
+    background-color: #007bff; /* Bootstrap primary color */
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .custom-btn:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+  }
+  
+  .custom-primary {
+    /* Additional styles specific to the primary button */
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  

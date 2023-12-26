@@ -1,0 +1,102 @@
+/* In your CSS module (Style) */
+.title {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+._card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 600px;
+  width: 100%;
+  background-color: #fff; /* Added background color */
+}
+
+.send-btn,
+.cancel-button {
+  display: inline-block;
+  padding: 12px 24px; /* Adjusted padding for better button size */
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.send-btn {
+  margin-right: 10px;
+  border: 1px solid #007bff;
+  color: #ffffff;
+  background-color: #007bff;
+}
+
+.send-btn:hover {
+  background-color: #0056b3;
+}
+
+.cancel-button {
+  border: 1px solid #dc3545;
+  color: #ffffff;
+  background-color: #dc3545;
+}
+
+.cancel-button:hover {
+  background-color: #bd2130;
+}
+
+.tax-box {
+  display: block;
+  padding: 18px;
+  font-size: 16px;
+  text-align: center;
+  color: #090909;
+  background-color: #fef9fa;
+  border: 1px solid #090909;
+  border-radius: 4px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.input-container,
+.button-container {
+  display: block;
+  margin-bottom: 20px; /* Added margin for better spacing */
+}
+
+.container {
+  text-align: center;
+}
+
+.img-index {
+  width: 95%;
+}
+
+._modal {
+  width: 600px;
+  max-height: 600px;
+  padding: 15px;
+  color: black;
+  background-color: white;
+}
+
+._item-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+._tab {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgb(220, 220, 220);
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(190, 190, 190);
+  }
+}

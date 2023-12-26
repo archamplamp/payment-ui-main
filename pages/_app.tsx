@@ -5,7 +5,7 @@ import Head from 'next/head'
 function MyApp({ Component, pageProps }: AppProps) {
   return <>
     <Head>
-      <title>FujiPayment</title>
+      <title>FUJIFILM</title>
     </Head>
     <Component {...pageProps} />
   </>
