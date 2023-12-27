@@ -9,7 +9,7 @@ import warning from '../../public/warning.png'
 const TransactionFail = (): JSX.Element => {
   // use effect
   useEffect(() => {
-    setTimeout(() => Router.push('/'), 3000)
+    setTimeout(() => Router.push('/admin'), 3000)
   }, [])
 
   return (
@@ -31,7 +31,7 @@ const TransactionFail = (): JSX.Element => {
         )}
       >
         <span>Error: </span>
-        Information you entered is incorrect. Please try again!
+        Username or password is incorrect!
       </div>
     </div>
   )

@@ -1,117 +1,88 @@
+import Router from 'next/router'
+import Style from './login.module.scss'
+import { useState } from 'react'
+import axios from 'axios'
 
-import React, { useState, useEffect } from 'react';
-import styles from './admin.module.scss'; // Import your CSS module
-
-const PackageCode = (): JSX.Element => {
-  const [inputValue, setInputValue] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const [packageCode, setDataPackageCode] = useState<any[]>([]);
-
-  const checkDataCodePackage = async (): Promise<void> => {
+const loginService = (): JSX.Element => {
+  const [inputUsername, setInputUsername] = useState<string>('')
+  const [inputPassword, setInputPassword] = useState<string>('')
+console.log({inputUsername,inputPassword});
+  const adminLoginService = async (): Promise<void> => {
     try {
-      setLoading(true);
-      setError(null);
-
-      // Simulate an API call or update the data based on your actual API logic
-
-      const dataResponse = [
-        {
-          id: '658a37bc2ce66c811ca1a880',
-          codePackage: 'pL6vtbnl',
-          status: 'BLOCK',
-          created_at: '2023-12-26T02:17:32.375Z',
-          updated_at: '2023-12-26T03:04:03.171Z',
+      const apiUrl = 'http://localhost:4040/login';
+      console.log({apiUrl});
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        {
-          id: '658a37bc2ce66c811ca1a880d',
-          codePackage: 'sLhvtbnl',
-          status: 'BLOCK',
-          created_at: '2023-12-26T02:17:32.375Z',
-          updated_at: '2023-12-26T03:04:03.171Z',
-        },
-        {
-          id: '658a37bc2ce66c811ca1a880d',
-          codePackage: 'lL6vtbnl',
-          status: 'BLOCK',
-          created_at: '2023-12-26T02:17:32.375Z',
-          updated_at: '2023-12-26T03:04:03.171Z',
-        },
-      ];
+        body: JSON.stringify({ username: inputUsername, password: inputPassword }),
+      });
+console.log({response});
 
-      setDataPackageCode(dataResponse);
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log(responseData);
+          if(responseData.res_code==="0000"){
+              Router.push('/admin/code')
+            }else{
+              Router.push('/admin/fail')
+            }
+      } else {
+        // Handle errors if the API request was not successful
+        console.error('API request failed');
+        Router.push("/admin/fail")
+      }
     } catch (error) {
-      setError('Error sending API request');
       console.error('Error sending API request', error);
-    } finally {
-      setLoading(false);
     }
   };
 
-  const handleEdit = (packageId: string): void => {
-    // Placeholder for edit action
-    console.log(`Edit package with ID ${packageId}`);
-  };
 
-  const handleDelete = (packageId: string): void => {
-    // Placeholder for delete action
-    console.log(`Delete package with ID ${packageId}`);
-  };
 
-  const handleInsertData = (packageId: string): void => {
-    // Placeholder for delete action
-    console.log(`Insert package with ID ${packageId}`);
+  const homepage = (): void => {
+    Router.push(`/`);
   };
-
-  useEffect(() => {
-    checkDataCodePackage();
-  }, []);
 
   return (
-    <div className={styles.container}>
-      <div className="table-responsive">
-      <h2 className={styles['listDataTitle']}>TABLE DATA</h2>
-        <table className={`table ${styles.studentTable}`}>
-          <thead>
-            <tr>
-              <th>Package ID</th>
-              <th>Code Package</th>
-              <th>Status</th>
-              <th>Created</th>
-              <th>Updated</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {packageCode.map((packageItem) => (
-              <tr key={packageItem.id}>
-                <td>{packageItem.id}</td>
-                <td>{packageItem.codePackage}</td>
-                <td>{packageItem.status}</td>
-                <td>{packageItem.created_at}</td>
-                <td>{packageItem.updated_at}</td>
-                <td>
-                  <button className={styles['edit-btn']} onClick={() => handleEdit(packageItem.id)}>
-                    Edit
-                  </button>
-                  <button className={styles['delete-btn']} onClick={() => handleDelete(packageItem.id)}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div><br></br></div>
-      <div className={styles.addButtonContainer}>
-        <button className={styles['add-code-btn']} onClick={() => handleInsertData(packageItem.id)}>
-          ADD CODE
-        </button>
+    <div className={Style['container']}>
+      <div className={Style['_item-center']}>
+        <div className={Style['_card']}>
+          <div className={Style['_modal']}>
+            <h2 className={`${Style['title']} ${Style['_item-center']}`}>ADMIN </h2>
+            <div className={Style['_item-center']}>
+              <div className={Style['input-container']}>
+                <input
+                  type="text"
+                  placeholder="username"
+                  value={inputUsername}
+                  onChange={(e) => setInputUsername(e.target.value)}
+                  className={Style['tax-box']}
+                />
+              </div>
+              <div className={Style['input-container']}>
+                <input
+                  type="text"
+                  placeholder="password"
+                  value={inputPassword}
+                  onChange={(e) => setInputPassword(e.target.value)}
+                  className={Style['tax-box']}
+                />
+              </div>
+              <div className={Style['button-container']}>
+                <button className={Style['send-btn']} onClick={() => adminLoginService()}>
+                  Submit
+                </button>
+                <button className={Style['cancel-button']} onClick={() => homepage()}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default PackageCode;
+export default loginService;

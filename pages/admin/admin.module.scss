@@ -1,7 +1,5 @@
-// admin.module.scss
-
 /* Existing styles for the table */
-.studentTable {
+.packageCode {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -9,22 +7,22 @@
     margin-right: 20px;
     font-size: 30px;
     color: black;
-    margin-top: 0;
+    margin-top: 10;
   }
   
-  .studentTable th,
-  .studentTable td {
-    padding: 15px;
+  .packageCode th,
+  .packageCode td {
+    padding: 12px;
     border: 1px solid #ddd;
-    text-align: left;
+    text-align: center;
     vertical-align: top;
   }
   
-  .studentTable th {
+  .packageCode th {
     background-color: #f2f2f2;
   }
   
-  .studentTable tbody tr:hover {
+  .packageCode tbody tr:hover {
     background-color: #f5f5f5;
   }
   
@@ -46,10 +44,10 @@
   .edit-btn {
     margin-right: 15px;
     border-radius: 8px;
-    border: 1px solid #ffc107;
+    border: 1px solid #41bef8;
     color: #212529;
-    background-color: #ffc107;
-    padding: 15px;
+    background-color: #32b9f8;
+    padding: 6px;
     font-size: 18px;
   }
   
@@ -62,30 +60,31 @@
     margin-right: 15px;
     border-radius: 8px;
     border: 1px solid #dc3545;
-    color: #dc3545;
-    background-color: white;
-    padding: 15px;
+    // color: #dc3545;
+    color: white;
+    background-color:#dc3545;
+    padding: 6px;
     font-size: 18px;
   }
   
   .delete-btn:hover {
-    background-color: #dc3545;
-    color: white;
+    background-color: #a82633;
+    // color: white;
   }
   
   /* New style for the green button */
   .add-code-btn {
     border: 1px solid #28a745;
     color: #ffffff;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #28a745;
     padding: 15px;
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 20px;
     margin-right: 50px; /* เพิ่มบางค่าเพื่อลดระยะห่างทางขวา */
   }
   .table {
-    margin-right: 10px; /* ปรับตามความต้องการ */
+    margin-right: 0px; /* ปรับตามความต้องการ */
   }
   .add-code-btn:hover {
     background-color: #218838;
@@ -111,5 +110,6 @@
     font-size: 40px;
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 500px;
   }
   
