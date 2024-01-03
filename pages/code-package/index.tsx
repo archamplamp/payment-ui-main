@@ -2,13 +2,14 @@ import Router from 'next/router'
 import Style from './package.module.scss'
 import { useState } from 'react'
 import axios from 'axios'
+import config  from '../../config/index'
 
 const PackageCode = (): JSX.Element => {
   const [inputValue, setInputValue] = useState<string>('')
 
   const checkDataCodePackage = async (): Promise<void> => {
     try {
-      const apiUrl = 'http://localhost:4040/check-code-package';
+      const apiUrl = `${config.ApiPath}:4040/check-code-package`;
       console.log({apiUrl});
       const response = await fetch(apiUrl, {
         method: 'POST',

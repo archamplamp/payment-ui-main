@@ -128,8 +128,6 @@ const PackageCode = (): JSX.Element => {
     </Row>
   </Container>
 </div>
-
-
   );
 
 };

@@ -62,7 +62,7 @@ console.log({response});
               </div>
               <div className={Style['input-container']}>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="password"
                   value={inputPassword}
                   onChange={(e) => setInputPassword(e.target.value)}
