@@ -11,7 +11,7 @@ import Style from './payment.module.scss'
 
 // service
 import { getConfigPayment } from '../../service/payment.service'
-import config  from '../../config/index'
+import config from '../../config/index'
 
 // lib
 import axios from 'axios'
@@ -40,17 +40,15 @@ const Payment = ({ price, expiredTime, qrCodeUrl, source }: IProps): JSX.Element
   // interval check function
   const intervalCheckPayment = (): void => {
     //10 is source_id for check payment
-    axios.post(`${config.ApiPath}:4040/checkPaymentStatus/${source}`)
-      .then(res => {
-        if (res.data.status === 'failed' || res.data.status === 'expired')
-          setPaymentCompleted('failed')
-        else if (res.data.status === 'successful')
-          setPaymentCompleted('success')
-      })
+    axios.post(`${config.ApiPath}:4040/checkPaymentStatus/${source}`).then(res => {
+      if (res.data.status === 'failed' || res.data.status === 'expired') setPaymentCompleted('failed')
+      else if (res.data.status === 'successful') setPaymentCompleted('success')
+    })
   }
 
   const callApiLockScreen = (): void => {
-    axios.get('http://localhost:3000/lockScreen')
+    axios
+      .get('http://localhost:3000/lockScreen')
       .then(res => {
         console.log('Lock screen completed')
       })
@@ -93,17 +91,12 @@ const Payment = ({ price, expiredTime, qrCodeUrl, source }: IProps): JSX.Element
         <div className={Style['box-container']}>
           <div className={Style['box-left']}>
             <div className={Style['qr-header']}> สแกน QR เพื่อ ชำระเงิน </div>
-            <div className={Style['price']}> ยอดชำระ { price } THB </div>
+            <div className={Style['price']}> ยอดชำระ {price} THB </div>
           </div>
           <div className={Style['img-qrcode']}>
-            <div
-              id="2"
-            >
+            <div id="2">
               <Card name={'Payment'} />
-              <img
-                src={qrCode}
-                height="500px"
-              />
+              <img src={qrCode} height="500px" />
             </div>
           </div>
           <div className={Style['box-right']}>
@@ -134,8 +127,8 @@ export async function getServerSideProps(): Promise<SideProps> {
     props: {
       ...config,
       qrCodeUrl: data.qrCode,
-      source: data.source,
-    },
+      source: data.source
+    }
   }
 }
 

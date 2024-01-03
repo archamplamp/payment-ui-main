@@ -10,17 +10,9 @@ const PackageCode = (): JSX.Element => {
   const checkDataCodePackage = (): void => {
     try {
       axios
-        .post(
-          `${config.ApiPath}:4040/check-code-package`,
-          {
-            codePackage: inputValue
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          }
-        )
+        .post(`${config.ApiPath}:4040/check-code-package`, {
+          codePackage: inputValue
+        })
         .then(response => {
           if (response.status === 200) {
             const responseData = response.data

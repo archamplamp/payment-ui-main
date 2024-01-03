@@ -16,8 +16,8 @@ const customStyles = {
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
+    transform: 'translate(-50%, -50%)'
+  }
 }
 
 const PaymentIndex = (): JSX.Element => {
@@ -33,40 +33,28 @@ const PaymentIndex = (): JSX.Element => {
 
   return (
     <div className={Style['container']}>
-      <img
-        src={indexPic.src}
-        className={Style['img-index']}
-        onClick={() => setIsOpen(true)}
-      ></img>
+      <img src={indexPic.src} className={Style['img-index']} onClick={() => setIsOpen(true)}></img>
       <div className={Style['_item-center']}>
-        <Modal
-          isOpen={isOpen}
-          style={customStyles}
-        >
+        <Modal isOpen={isOpen} style={customStyles}>
           <div className={Style['_modal']}>
             <div className={Style['_item-center']}>
-              <div
-                className={Style['_tab']}
-                style={{ backgroundColor: tab === 'TermAndCondition' ? 'ButtonHighlight' : '' }}
-                onClick={() => setTab('TermAndCondition')}
-              > { 'ข้อกำหนดและเงื่อนไข (Terms & Conditions)' } </div>
-              <div
-                className={Style['_tab']}
-                style={{ marginLeft: '15px', backgroundColor: tab === 'PrivacyPolicy' ? 'ButtonHighlight' : '' }}
-                onClick={() => setTab('PrivacyPolicy')}
-              > { 'นโยบายความเป็นส่วนตัว' } </div>
+              <div className={Style['_tab']} style={{ backgroundColor: tab === 'TermAndCondition' ? 'ButtonHighlight' : '' }} onClick={() => setTab('TermAndCondition')}>
+                {' '}
+                {'ข้อกำหนดและเงื่อนไข (Terms & Conditions)'}{' '}
+              </div>
+              <div className={Style['_tab']} style={{ marginLeft: '15px', backgroundColor: tab === 'PrivacyPolicy' ? 'ButtonHighlight' : '' }} onClick={() => setTab('PrivacyPolicy')}>
+                {' '}
+                {'นโยบายความเป็นส่วนตัว'}{' '}
+              </div>
             </div>
-            { tab === 'TermAndCondition' && <TermAndCondition /> }
-            { tab === 'PrivacyPolicy' && <PrivacyPolicy /> }
-            <div
-              className={Style['_item-center']}
-              style={{ marginTop: '10px', padding: '10px' }}
-            >
+            {tab === 'TermAndCondition' && <TermAndCondition />}
+            {tab === 'PrivacyPolicy' && <PrivacyPolicy />}
+            <div className={Style['_item-center']} style={{ marginTop: '10px', padding: '10px' }}>
               <button onClick={() => setIsOpen(false)}> ไม่ยินยอม </button>
-              <button
-                style={{ marginLeft: '10px' }}
-                onClick={() => redirect()}
-              > ยินยอม </button>
+              <button style={{ marginLeft: '10px' }} onClick={() => redirect()}>
+                {' '}
+                ยินยอม{' '}
+              </button>
             </div>
           </div>
         </Modal>
