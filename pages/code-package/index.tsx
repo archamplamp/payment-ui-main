@@ -9,36 +9,38 @@ const PackageCode = (): JSX.Element => {
 
   const checkDataCodePackage = async (): Promise<void> => {
     try {
-      // const apiUrl = `${config.ApiPath}:4040/check-code-package`;
-      const apiUrl = `http://43.229.133.171/:4040/check-code-package`;
-      console.log({apiUrl});
-      const response = await fetch(apiUrl, {
-        method: 'POST',
+      const apiUrl = `${config.ApiPath}:4040/check-code-package`;
+      // const apiUrl = 'http://43.229.133.171:4040/check-code-package'; // Fix the URL by removing the extra colon
+      console.log({ apiUrl });
+  
+      const response = await axios.post(apiUrl, {
+        codePackage: inputValue,
+      }, {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ codePackage: inputValue }),
       });
-
-      if (response.ok) {
-        const responseData = await response.json();
+  
+      if (response.status === 200) {
+        const responseData = response.data;
         console.log("******************");
         console.log(responseData);
-          if(responseData.res_code==="0000"){
-            handleEventCheckCodePackageSuccess()
-            }else{
-              Router.push('/code-package/fail')
-            }
+  
+        if (responseData.res_code === "0000") {
+          handleEventCheckCodePackageSuccess();
+        } else {
+          Router.push('/code-package/fail');
+        }
       } else {
         // Handle errors if the API request was not successful
         console.error('API request failed');
-        Router.push("/")
+        Router.push('/');
       }
     } catch (error) {
       console.error('Error sending API request', error);
     }
   };
-
+  
   const handleEventCheckCodePackageSuccess = async (): Promise<void> => {
     await axios.get('http://localhost:3000/unlockScreen').catch(e => console.log(e, 'unlockScreen'))
     await axios.get('http://localhost:3000/killBrowser').catch(e => console.log(e, 'killBrowser'))
