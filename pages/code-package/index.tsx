@@ -9,7 +9,8 @@ const PackageCode = (): JSX.Element => {
 
   const checkDataCodePackage = async (): Promise<void> => {
     try {
-      const apiUrl = `${config.ApiPath}:4040/check-code-package`;
+      // const apiUrl = `${config.ApiPath}:4040/check-code-package`;
+      const apiUrl = `http://43.229.133.171/:4040/check-code-package`;
       console.log({apiUrl});
       const response = await fetch(apiUrl, {
         method: 'POST',
