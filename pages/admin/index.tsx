@@ -7,39 +7,35 @@ import config from '../../config/index'
 const loginService = (): JSX.Element => {
   const [inputUsername, setInputUsername] = useState<string>('')
   const [inputPassword, setInputPassword] = useState<string>('')
-  const adminLoginService = (): void => {
-    getData(inputUsername, inputPassword)
+
+  const adminLoginService = async (): Promise<void> => {
+    try {
+      const apiUrl = `${config.ApiPath}:4040/login`
+      console.log('--> FUNCTION LOGIN SERVICE ', { apiUrl })
+      const response = await axios.post(apiUrl, {
+        username: inputUsername,
+        password: inputPassword
+      })
+      console.log('--> LOG', { response })
+
+      if (response.status === 200) {
+        const responseData = response.data
+        console.log(responseData)
+
+        if (responseData.res_code === '0000') {
+          Router.push('/admin/code')
+        } else {
+          Router.push('/admin/fail')
+        }
+      } else {
+        // Handle errors if the API request was not successful
+        console.error('API request failed')
+        Router.push('/admin/fail')
+      }
+    } catch (error) {
+      console.error('Error sending API request', error)
+    }
   }
-  // const adminLoginService = async (): Promise<void> => {
-  //   try {
-  //     const apiUrl = 'http://localhost:4040/login'
-  //     console.log({ apiUrl })
-
-  //     const response = await axios.post(apiUrl, {
-  //       username: inputUsername,
-  //       password: inputPassword
-  //     })
-
-  //     console.log({ response })
-
-  //     if (response.status === 200) {
-  //       const responseData = response.data
-  //       console.log(responseData)
-
-  //       if (responseData.res_code === '0000') {
-  //         Router.push('/admin/code')
-  //       } else {
-  //         Router.push('/admin/fail')
-  //       }
-  //     } else {
-  //       // Handle errors if the API request was not successful
-  //       console.error('API request failed')
-  //       Router.push('/admin/fail')
-  //     }
-  //   } catch (error) {
-  //     console.error('Error sending API request', error)
-  //   }
-  // }
 
   const homepage = (): void => {
     Router.push('/')
@@ -72,45 +68,6 @@ const loginService = (): JSX.Element => {
       </div>
     </div>
   )
-}
-
-async function getData(inputUsername, inputPassword) {
-  try {
-    const apiUrl = 'http://localhost:4040/login'
-    console.log({ apiUrl })
-
-    const response = await axios.post(
-      apiUrl,
-      {
-        username: inputUsername,
-        password: inputPassword
-      },
-      {
-        withCredentials: false // Add this option to include credentials
-      }
-    )
-
-    console.log({ response })
-
-    if (response.status === 200) {
-      const responseData = response.data
-      console.log(responseData)
-
-      if (responseData.res_code === '0000') {
-        Router.push('/admin/code')
-      } else {
-        Router.push('/admin/fail')
-      }
-    } else {
-      // Handle errors if the API request was not successful
-      console.error('API request failed')
-      Router.push('/admin/fail')
-    }
-  } catch (error) {
-    console.error('Error sending API request', error)
-  }
-
-  // return res.json()
 }
 
 export default loginService
