@@ -71,9 +71,9 @@
           "allowHigherOrderFunctions": true
         }],
         "@typescript-eslint/keyword-spacing": ["error"],
-        // "@typescript-eslint/await-thenable": "warn",
-        // "@typescript-eslint/require-await": "warn",
-        // "@typescript-eslint/no-floating-promises": "warn",
+        "@typescript-eslint/await-thenable": "warn",
+        "@typescript-eslint/require-await": "warn",
+        "@typescript-eslint/no-floating-promises": "warn",
         "@typescript-eslint/indent": ["error", 2],
         "@typescript-eslint/sort-type-union-intersection-members": "error",
         "jsx-quotes": ["warn", "prefer-double"],

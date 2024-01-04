@@ -2,6 +2,7 @@ import Router from 'next/router'
 import React, { useState, useEffect } from 'react'
 import styles from './admin.module.scss' // Import your CSS module
 import moment from 'moment'
+import axios from 'axios' // Import Axios library
 
 const PackageCode = (): JSX.Element => {
   const [inputValue, setInputValue] = useState<string>('')
@@ -26,11 +27,9 @@ const PackageCode = (): JSX.Element => {
       setLoading(true)
       setError(null)
 
-      // Simulate an API call or update the data based on your actual API logic
-      // get data from api
-      const response = await fetch('http://localhost:4040/admin-find-all')
-      if (response.ok) {
-        const responseData = await response.json()
+      const response = await axios.get('http://localhost:4040/admin-find-all')
+      if (response.status === 200) {
+        const responseData = response.data
         console.log({ data: responseData.res_data })
 
         setDataPackageCode(responseData.res_data)
@@ -53,40 +52,38 @@ const PackageCode = (): JSX.Element => {
   const handleDelete = async (packageId: string): Promise<void> => {
     // Placeholder for delete action
     console.log(`Delete package with ID ${packageId}`)
-    await fetch(`http://localhost:4040/delete-code-package/${packageId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
+    try {
+      const response = await axios.delete(`http://localhost:4040/delete-code-package/${packageId}`)
+      if (response.status === 200) {
         console.log('delete success')
         checkDataCodePackage()
       } else {
         console.log('delete fail')
       }
-    })
+    } catch (error) {
+      console.error('Error sending delete request', error)
+    }
   }
 
   const handleInsertData = (packageId: string): void => {
     // Placeholder for delete action
     console.log(`Insert package with ID ${packageId}`)
-    //insert data code package
-    fetch(`http://localhost:4040/create-code-package`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(response => {
-      console.log({ a: response })
-      if (response.ok) {
-        console.log('insert success')
-        //update data before delete
-        checkDataCodePackage()
-      } else {
-        console.log('insert fail')
-      }
-    })
+    // insert data code package
+    axios
+      .post('http://localhost:4040/create-code-package', {}, { headers: { 'Content-Type': 'application/json' } })
+      .then(response => {
+        console.log({ a: response })
+        if (response.status === 200) {
+          console.log('insert success')
+          // update data before delete
+          checkDataCodePackage()
+        } else {
+          console.log('insert fail')
+        }
+      })
+      .catch(error => {
+        console.error('Error sending insert request', error)
+      })
   }
 
   useEffect(() => {
