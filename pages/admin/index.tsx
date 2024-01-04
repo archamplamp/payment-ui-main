@@ -79,10 +79,16 @@ async function getData(inputUsername, inputPassword) {
     const apiUrl = 'http://localhost:4040/login'
     console.log({ apiUrl })
 
-    const response = await axios.post(apiUrl, {
-      username: inputUsername,
-      password: inputPassword
-    })
+    const response = await axios.post(
+      apiUrl,
+      {
+        username: inputUsername,
+        password: inputPassword
+      },
+      {
+        withCredentials: false // Add this option to include credentials
+      }
+    )
 
     console.log({ response })
 
