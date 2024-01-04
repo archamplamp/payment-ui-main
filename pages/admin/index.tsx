@@ -12,10 +12,20 @@ const loginService = (): JSX.Element => {
     try {
       const apiUrl = `${config.ApiPath}:4040/login`
       console.log('--> FUNCTION LOGIN SERVICE ', { apiUrl })
-      const response = await axios.post(apiUrl, {
-        username: inputUsername,
-        password: inputPassword
-      })
+      const response = await axios.post(
+        apiUrl,
+        {
+          username: inputUsername,
+          password: inputPassword
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+          }
+        }
+      )
       console.log('--> LOG', { response })
 
       if (response.status === 200) {
