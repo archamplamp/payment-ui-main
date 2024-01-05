@@ -72,7 +72,6 @@ const Payment = ({ price, expiredTime, qrCodeUrl, source }: IProps): JSX.Element
     } else if (paymentCompleted === 'failed') {
       Router.push('/payment/fail')
     }
-
     const interval = setInterval(intervalCheckPayment, 10000)
     return () => clearInterval(interval)
   }, [paymentCompleted])
@@ -122,6 +121,8 @@ interface SideProps {
 
 export async function getServerSideProps(): Promise<SideProps> {
   const config = await getConfigPayment()
+  console.log({ config })
+
   const data = await axios.get('http://localhost:4040/qrCode').then(res => res.data)
   return {
     props: {

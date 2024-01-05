@@ -10,9 +10,13 @@ const PackageCode = (): JSX.Element => {
   const checkDataCodePackage = (): void => {
     try {
       axios
-        .post(`${config.ApiPath}:4040/check-code-package`, {
-          codePackage: inputValue
-        })
+        .post(
+          `${config.ApiPath}:4040/check-code-package`,
+          {
+            codePackage: inputValue
+          },
+          { headers: { 'Content-Type': 'application/json' } }
+        )
         .then(response => {
           if (response.status === 200) {
             const responseData = response.data
@@ -86,7 +90,7 @@ const PackageCode = (): JSX.Element => {
                 <input type="text" placeholder="Enter code!" value={inputValue} onChange={e => setInputValue(e.target.value)} className={Style['tax-box']} />
               </div>
               <div className={Style['button-container']}>
-                <button className={Style['send-btn']} onClick={() => checkDataCodePackage()}>
+                <button className={Style['send-btn']} onClick={checkDataCodePackage}>
                   Submit
                 </button>
                 <button className={Style['cancel-button']} onClick={() => homepage()}>

@@ -27,7 +27,7 @@ const PackageCode = (): JSX.Element => {
       setLoading(true)
       setError(null)
 
-      const response = await axios.get('http://localhost:4040/admin-find-all')
+      const response = await axios.get('http://localhost:4040/admin-find-all', { headers: { 'Content-Type': 'application/json' } })
       if (response.status === 200) {
         const responseData = response.data
         console.log({ data: responseData.res_data })
