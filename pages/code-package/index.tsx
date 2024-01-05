@@ -11,7 +11,7 @@ const PackageCode = (): JSX.Element => {
     try {
       axios
         .post(
-          `${config.ApiPath}:4040/check-code-package`,
+          `${config.ApiPath}/check-code-package`,
           // `http://43.229.133.171:4040/check-code-package`,
           {
             codePackage: inputValue
@@ -34,7 +34,7 @@ const PackageCode = (): JSX.Element => {
           }
         })
         .catch(error => {
-          console.log(`${config.ApiPath}:4040/check-code-package`, error)
+          console.log(`${config.ApiPath}/check-code-package`, error)
         })
     } catch (error) {
       console.error('Error sending API request', error)

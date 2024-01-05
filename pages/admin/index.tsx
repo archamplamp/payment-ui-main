@@ -10,7 +10,7 @@ const loginService = (): JSX.Element => {
 
   const adminLoginService = async (): Promise<void> => {
     try {
-      const apiUrl = `${config.ApiPath}:4040/login`
+      const apiUrl = `${config.ApiPath}/login`
       console.log('--> FUNCTION LOGIN SERVICE ', { apiUrl })
       const response = await axios.post(
         apiUrl,
