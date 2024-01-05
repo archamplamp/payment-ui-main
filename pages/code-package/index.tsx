@@ -12,6 +12,7 @@ const PackageCode = (): JSX.Element => {
       axios
         .post(
           `${config.ApiPath}:4040/check-code-package`,
+          // `http://43.229.133.171:4040/check-code-package`,
           {
             codePackage: inputValue
           },
@@ -20,7 +21,6 @@ const PackageCode = (): JSX.Element => {
         .then(response => {
           if (response.status === 200) {
             const responseData = response.data
-            console.log('******************')
             console.log({ responseData })
             if (responseData.res_code === '0000') {
               handleEventCheckCodePackageSuccess()
@@ -36,34 +36,6 @@ const PackageCode = (): JSX.Element => {
         .catch(error => {
           console.log(`${config.ApiPath}:4040/check-code-package`, error)
         })
-
-      // const apiUrl = `${config.ApiPath}:4040/check-code-package`;
-      // // const apiUrl = 'http://43.229.133.171:4040/check-code-package'; // Fix the URL by removing the extra colon
-      // console.log({ apiUrl });
-
-      // const response = await axios.post(apiUrl, {
-      //   codePackage: inputValue,
-      // }, {
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   }
-      // });
-
-      // if (response.status === 200) {
-      //   const responseData = response.data;
-      //   console.log("******************");
-      //   console.log(responseData);
-
-      //   if (responseData.res_code === "0000") {
-      //     handleEventCheckCodePackageSuccess();
-      //   } else {
-      //     Router.push('/code-package/fail');
-      //   }
-      // } else {
-      //   // Handle errors if the API request was not successful
-      //   console.error('API request failed');
-      //   Router.push('/');
-      // }
     } catch (error) {
       console.error('Error sending API request', error)
     }
