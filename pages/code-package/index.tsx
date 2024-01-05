@@ -90,7 +90,7 @@ const PackageCode = (): JSX.Element => {
                 <input type="text" placeholder="Enter code!" value={inputValue} onChange={e => setInputValue(e.target.value)} className={Style['tax-box']} />
               </div>
               <div className={Style['button-container']}>
-                <button className={Style['send-btn']} onClick={checkDataCodePackage}>
+                <button className={Style['send-btn']} onClick={() => checkDataCodePackage()}>
                   Submit
                 </button>
                 <button className={Style['cancel-button']} onClick={() => homepage()}>
