@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './admin.module.scss' // Import your CSS module
 import moment from 'moment'
 import axios from 'axios' // Import Axios library
-
+import config from '../../config/index'
 const PackageCode = (): JSX.Element => {
   const [inputValue, setInputValue] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
@@ -27,7 +27,7 @@ const PackageCode = (): JSX.Element => {
       setLoading(true)
       setError(null)
 
-      const response = await axios.get('http://localhost:4040/admin-find-all', { headers: { 'Content-Type': 'application/json' } })
+      const response = await axios.get(`${config.ApiPath}/admin-find-all`, { headers: { 'Content-Type': 'application/json' } })
       if (response.status === 200) {
         const responseData = response.data
         console.log({ data: responseData.res_data })
@@ -53,7 +53,7 @@ const PackageCode = (): JSX.Element => {
     // Placeholder for delete action
     console.log(`Delete package with ID ${packageId}`)
     try {
-      const response = await axios.delete(`http://localhost:4040/delete-code-package/${packageId}`)
+      const response = await axios.delete(`${config.ApiPath}/delete-code-package/${packageId}`)
       if (response.status === 200) {
         console.log('delete success')
         checkDataCodePackage()
@@ -70,7 +70,7 @@ const PackageCode = (): JSX.Element => {
     console.log(`Insert package with ID ${packageId}`)
     // insert data code package
     axios
-      .post('http://localhost:4040/create-code-package', {}, { headers: { 'Content-Type': 'application/json' } })
+      .post(`${config.ApiPath}/create-code-package`, {}, { headers: { 'Content-Type': 'application/json' } })
       .then(response => {
         console.log({ a: response })
         if (response.status === 200) {

@@ -40,7 +40,7 @@ const Payment = ({ price, expiredTime, qrCodeUrl, source }: IProps): JSX.Element
   // interval check function
   const intervalCheckPayment = (): void => {
     //10 is source_id for check payment
-    axios.post(`${config.ApiPath}:4040/checkPaymentStatus/${source}`).then(res => {
+    axios.post(`${config.ApiPath}/checkPaymentStatus/${source}`).then(res => {
       if (res.data.status === 'failed' || res.data.status === 'expired') setPaymentCompleted('failed')
       else if (res.data.status === 'successful') setPaymentCompleted('success')
     })
