@@ -97,22 +97,26 @@ const PackageCode = (): JSX.Element => {
         <table className={`table ${styles.packageCode}`}>
           <thead>
             <tr>
-              <th>Package ID</th>
+              {/* <th>Package ID</th> */}
               <th>Code Package</th>
+              <th>Quota</th>
               <th>Status</th>
               <th>Created</th>
               <th>Updated</th>
+              <th>Exp.</th>
               <th>Options</th>
             </tr>
           </thead>
           <tbody>
             {packageCode.map(packageItem => (
               <tr key={packageItem._id}>
-                <td>{packageItem._id}</td>
+                {/* <td>{packageItem._id}</td> */}
                 <td>{packageItem.codePackage}</td>
+                <td>{packageItem.quota}</td>
                 <td>{packageItem.status}</td>
                 <td>{formatDate(packageItem.created_at)}</td>
                 <td>{formatDate(packageItem.updated_at)}</td>
+                <td>{formatDate(packageItem.expiredTime)}</td>
                 <td>
                   <button className={`${styles['edit-btn']} ${getStatusColorClass(packageItem.status)}`} onClick={() => handleEdit(packageItem._id)}>
                     Edit
