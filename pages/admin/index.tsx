@@ -25,12 +25,15 @@ const loginService = (): JSX.Element => {
         }
       )
       console.log('--> LOG', { response })
-
       if (response.status === 200) {
         const responseData = response.data
         console.log(responseData)
 
         if (responseData.res_code === '0000') {
+          // Store the token in localStorage or sessionStorage
+          console.log({ data_token: responseData.res_data.token })
+
+          localStorage.setItem('token', responseData.res_data.token)
           Router.push('/admin/code')
         } else {
           Router.push('/admin/fail')
