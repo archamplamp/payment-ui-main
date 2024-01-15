@@ -9,6 +9,7 @@ const PackageCode = (): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [packageCode, setDataPackageCode] = useState<any[]>([])
+  const [currentIndex, setCurrentIndex] = useState<number>(0)
 
   const formatDate = (dateTimeString: string): string => {
     if (!dateTimeString) {
@@ -90,20 +91,21 @@ const PackageCode = (): JSX.Element => {
         <table className={`table ${styles.packageCode}`}>
           <thead>
             <tr>
-              {/* <th>Package ID</th> */}
+              <th>#</th>
+              {/* ... other headers */}
               <th>Code Package</th>
               <th>Quota</th>
               <th>Created</th>
-              <th>Remaining Days </th>
+              <th>Remaining Days</th>
               <th>Exp.</th>
               <th>Status</th>
               <th>Options</th>
             </tr>
           </thead>
           <tbody>
-            {packageCode.map(packageItem => (
+            {packageCode.map((packageItem, index) => (
               <tr key={packageItem._id}>
-                {/* <td>{packageItem._id}</td> */}
+                <td>{currentIndex + index + 1}</td>
                 <td>{packageItem.codePackage}</td>
                 <td>{packageItem.quota}</td>
                 <td>{formatDate(packageItem.created_at)}</td>
