@@ -5,10 +5,9 @@ import moment from 'moment'
 import axios from 'axios' // Import Axios library
 import config from '../../config/index'
 const PackageCode = (): JSX.Element => {
-  const [inputValue, setInputValue] = useState<string>('')
+  // const [inputValue, setInputValue] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
-
   const [packageCode, setDataPackageCode] = useState<any[]>([])
 
   const formatDate = (dateTimeString: string): string => {
@@ -16,6 +15,12 @@ const PackageCode = (): JSX.Element => {
       return ''
     }
     return moment(dateTimeString).format('DD/MM/YYYY HH:mm:ss')
+  }
+  const calculateRemainingDays = (expiredTime: string): number => {
+    const now = moment() // current date
+    const expirationDate = moment(expiredTime) // expiredTime date
+    const remainingDays = expirationDate.diff(now, 'days') + 1 // difference in days
+    return remainingDays
   }
 
   const getStatusColorClass = (status: string): string => {
@@ -70,25 +75,8 @@ const PackageCode = (): JSX.Element => {
     }
   }
 
-  const handleInsertData = (packageId: string): void => {
-    // Placeholder for delete action
-    console.log(`Insert package with ID ${packageId}`)
-    // insert data code package
-    axios
-      .post(`${config.ApiPath}/create-code-package`, {}, { headers: { 'Content-Type': 'application/json' } })
-      .then(response => {
-        console.log({ a: response })
-        if (response.status === 200) {
-          console.log('insert success')
-          // update data before delete
-          checkDataCodePackage()
-        } else {
-          console.log('insert fail')
-        }
-      })
-      .catch(error => {
-        console.error('Error sending insert request', error)
-      })
+  const handleInsertData = (): void => {
+    Router.push('/admin/insert-code')
   }
 
   useEffect(() => {
@@ -105,10 +93,10 @@ const PackageCode = (): JSX.Element => {
               {/* <th>Package ID</th> */}
               <th>Code Package</th>
               <th>Quota</th>
-              <th>Status</th>
               <th>Created</th>
-              <th>Updated</th>
+              <th>Remaining Days </th>
               <th>Exp.</th>
+              <th>Status</th>
               <th>Options</th>
             </tr>
           </thead>
@@ -118,10 +106,10 @@ const PackageCode = (): JSX.Element => {
                 {/* <td>{packageItem._id}</td> */}
                 <td>{packageItem.codePackage}</td>
                 <td>{packageItem.quota}</td>
-                <td>{packageItem.status}</td>
                 <td>{formatDate(packageItem.created_at)}</td>
-                <td>{formatDate(packageItem.updated_at)}</td>
+                <td>{calculateRemainingDays(packageItem.expiredTime)}</td>
                 <td>{formatDate(packageItem.expiredTime)}</td>
+                <td>{packageItem.status}</td>
                 <td>
                   <button className={`${styles['edit-btn']} ${getStatusColorClass(packageItem.status)}`} onClick={() => handleEdit(packageItem._id)}>
                     Edit
