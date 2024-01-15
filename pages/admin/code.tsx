@@ -20,7 +20,7 @@ const PackageCode = (): JSX.Element => {
   const calculateRemainingDays = (expiredTime: string): number => {
     const now = moment() // current date
     const expirationDate = moment(expiredTime) // expiredTime date
-    const remainingDays = expirationDate.diff(now, 'days') + 1 // difference in days
+    const remainingDays = expirationDate.diff(now, 'days')
     return remainingDays
   }
 
