@@ -1,11 +1,11 @@
 import Router from 'next/router'
 import React, { useState, useEffect } from 'react'
-import styles from './admin.module.scss' // Import your CSS module
+import styles from './admin.module.scss'
 import moment from 'moment'
-import axios from 'axios' // Import Axios library
+import axios from 'axios'
 import config from '../../config/index'
+
 const PackageCode = (): JSX.Element => {
-  // const [inputValue, setInputValue] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [packageCode, setDataPackageCode] = useState<any[]>([])
@@ -17,6 +17,7 @@ const PackageCode = (): JSX.Element => {
     }
     return moment(dateTimeString).format('DD/MM/YYYY HH:mm:ss')
   }
+
   const calculateRemainingDays = (expiredTime: string): number => {
     const now = moment() // current date
     const expirationDate = moment(expiredTime) // expiredTime date
@@ -42,7 +43,6 @@ const PackageCode = (): JSX.Element => {
       if (response.status === 200) {
         const responseData = response.data
         console.log({ data: responseData.res_data })
-
         setDataPackageCode(responseData.res_data)
       } else {
         console.error('API request failed')
@@ -56,13 +56,15 @@ const PackageCode = (): JSX.Element => {
   }
 
   const handleEdit = (packageId: string): void => {
-    // Placeholder for edit action
-    console.log(`Edit package with ID ${packageId}`)
+    // Navigate to the update page with the packageId
+    console.log({ packageId })
+    Router.push({
+      pathname: '/admin/update-code',
+      query: { packageId }
+    })
   }
 
   const handleDelete = async (packageId: string): Promise<void> => {
-    // Placeholder for delete action
-    console.log(`Delete package with ID ${packageId}`)
     try {
       const response = await axios.delete(`${config.ApiPath}/delete-code-package/${packageId}`)
       if (response.status === 200) {
@@ -92,7 +94,6 @@ const PackageCode = (): JSX.Element => {
           <thead>
             <tr>
               <th>#</th>
-              {/* ... other headers */}
               <th>Code Package</th>
               <th>Quota</th>
               <th>Created</th>
@@ -126,7 +127,7 @@ const PackageCode = (): JSX.Element => {
         </table>
       </div>
       <div>
-        <br></br>
+        <br />
       </div>
       <div className={styles.addButtonContainer}>
         <button className={styles['add-code-btn']} onClick={() => handleInsertData()}>
