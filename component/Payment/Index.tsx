@@ -7,7 +7,8 @@ import { useState } from 'react'
 
 // component
 import TermAndCondition from '../PDPA/TermAndCondition'
-import PrivacyPolicy from '../PDPA/PrivacyPolicy'
+// import PrivacyPolicy from '../PDPA/PrivacyPolicy'
+import PrivacyPolicy from '../PDPA/Privacy'
 
 const customStyles = {
   content: {
