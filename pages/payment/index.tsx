@@ -120,13 +120,11 @@ interface SideProps {
 }
 
 export async function getServerSideProps(): Promise<SideProps> {
-  const config = await getConfigPayment()
-  console.log({ config })
-
-  const data = await axios.get('http://localhost:4040/qrCode').then(res => res.data)
+  const configPayment = await getConfigPayment()
+  const data = await axios.get(`${config.ApiPath}/qrCode`).then(res => res.data)
   return {
     props: {
-      ...config,
+      ...configPayment,
       qrCodeUrl: data.qrCode,
       source: data.source
     }
