@@ -9,7 +9,7 @@ import warning from '../../public/warning.png'
 const TransactionFail = (): JSX.Element => {
   // use effect
   useEffect(() => {
-    setTimeout(() => Router.push('/'), 2000)
+    setTimeout(() => Router.push('/fujifilm'), 2000)
   }, [])
 
   return (
