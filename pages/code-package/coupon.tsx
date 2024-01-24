@@ -4,7 +4,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import config from '../../config/index'
 
-const PackageCode = (): JSX.Element => {
+const PackageCodeAndCoupon = (): JSX.Element => {
   const [inputValue, setInputValue] = useState<string>('')
 
   const checkDataCodePackage = (): void => {
@@ -12,7 +12,6 @@ const PackageCode = (): JSX.Element => {
       axios
         .post(
           `${config.ApiPath}/check-code-package`,
-          // `http://43.229.133.171:4040/check-code-package`,
           {
             codePackage: inputValue
           },
@@ -30,7 +29,7 @@ const PackageCode = (): JSX.Element => {
           } else {
             // Handle errors if the API request was not successful
             console.error('API request failed')
-            Router.push('/')
+            Router.push('/fujifilm')
           }
         })
         .catch(error => {
@@ -44,11 +43,11 @@ const PackageCode = (): JSX.Element => {
   const handleEventCheckCodePackageSuccess = async (): Promise<void> => {
     await axios.get('http://localhost:3000/unlockScreen').catch(e => console.log(e, 'unlockScreen'))
     await axios.get('http://localhost:3000/killBrowser').catch(e => console.log(e, 'killBrowser'))
-    Router.push('/')
+    Router.push('/fujifilm')
   }
 
   const homepage = (): void => {
-    Router.push(`/`)
+    Router.push(`/fujifilm`)
   }
 
   return (
@@ -77,4 +76,4 @@ const PackageCode = (): JSX.Element => {
   )
 }
 
-export default PackageCode
+export default PackageCodeAndCoupon
