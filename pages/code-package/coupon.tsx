@@ -24,7 +24,7 @@ const PackageCodeAndCoupon = (): JSX.Element => {
             if (responseData.res_code === '0000') {
               handleEventCheckCodePackageSuccess()
             } else {
-              Router.push('/code-package/fail')
+              Router.push('/code-package/coupon-fail')
             }
           } else {
             // Handle errors if the API request was not successful

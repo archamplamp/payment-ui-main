@@ -26,7 +26,7 @@ const PaymentIndex = (): JSX.Element => {
   const [tab, setTab] = useState<string>('TermAndCondition')
 
   const redirect = (): void => {
-    Router.push('/code-package')
+    Router.push('/code-package/coupon')
   }
 
   // sub Component
