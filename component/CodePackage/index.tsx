@@ -1,7 +1,7 @@
 import Router from 'next/router'
 import Style from './index.module.scss'
 
-import indexPic from '../../public/index.png'
+import indexPic from '../../public/afterYou.png'
 import Modal from 'react-modal'
 import { useState } from 'react'
 
